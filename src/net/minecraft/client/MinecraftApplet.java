@@ -25,10 +25,6 @@ public class MinecraftApplet extends Applet {
          this.a.vg = new .j7("Player", "");
       }
 
-      if (this.getParameter("allfight") == null || this.getParameter("allfight") != "true") {
-         System.exit(0);
-      }
-
       this.a.U("true".equals(this.getParameter("demo")));
       if (this.getParameter("server") != null && this.getParameter("port") != null) {
          this.a.try(this.getParameter("server"), Integer.parseInt(this.getParameter("port")));
