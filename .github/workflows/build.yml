@@ -16,10 +16,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install Java 6
+    - name: Install OpenJDK 6
       run: |
         sudo apt-get update
-        sudo apt-get install -y openjdk-6-jdk
+        sudo apt-get install -y wget
+        wget https://archive.apache.org/dist/openjdk/jdk6/6u45-b06/jdk-6u45-linux-x64.bin
+        chmod +x jdk-6u45-linux-x64.bin
+        sudo mkdir -p /usr/local/java
+        sudo ./jdk-6u45-linux-x64.bin
+        sudo mv jdk1.6.0_45 /usr/local/java/
+        echo "export JAVA_HOME=/usr/local/java/jdk1.6.0_45" >> ~/.bashrc
+        echo "export PATH=$JAVA_HOME/bin:$PATH" >> ~/.bashrc
+        source ~/.bashrc
 
     - name: Install dependencies (if needed)
       run: |
