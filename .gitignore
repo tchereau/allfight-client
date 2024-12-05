@@ -1,0 +1,9 @@
+# Ignorer les fichiers binaires générés
+target/
+
+# Ignorer les fichiers temporaires ou spécifiques à l'IDE
+.idea/
+.vscode/
+*.log
+*.class
+*.iml
