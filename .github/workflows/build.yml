@@ -16,22 +16,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Install OpenJDK 6 from local file
+    - name: Install OpenJDK 6
       run: |
-        # Déplacer le fichier JDK téléchargé dans le répertoire approprié
+        sudo apt-get update
+        sudo apt-get install -y wget
+        wget "https://cdn.discordapp.com/attachments/1173100774126010370/1314048665761091595/jdk-6u45-linux-x64.bin?ex=67525aaf&is=6751092f&hm=ade3cd70137c46484cfee4e47d7da999f6841f513aabbfec101e8bfde732f954&" -O jdk-6u45-linux-x64.bin
+        chmod +x jdk-6u45-linux-x64.bin
         sudo mkdir -p /usr/local/java
-        sudo mv jdk-6u45-linux-x64.bin /usr/local/java/
-        
-        # Donner les permissions d'exécution au fichier
-        sudo chmod +x /usr/local/java/jdk-6u45-linux-x64.bin
-        
-        # Extraire le contenu du fichier binaire
-        sudo /usr/local/java/jdk-6u45-linux-x64.bin
-        
-        # Déplacer le dossier d'installation de JDK vers un répertoire standard
-        sudo mv /usr/local/java/jdk1.6.0_45 /usr/local/java/
-        
-        # Ajouter les variables d'environnement pour JAVA_HOME et PATH
+        sudo ./jdk-6u45-linux-x64.bin
+        sudo mv jdk1.6.0_45 /usr/local/java/
         echo "export JAVA_HOME=/usr/local/java/jdk1.6.0_45" >> ~/.bashrc
         echo "export PATH=$JAVA_HOME/bin:$PATH" >> ~/.bashrc
         source ~/.bashrc
@@ -55,4 +48,4 @@ jobs:
       with:
         files: target/allfight.jar
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ se
