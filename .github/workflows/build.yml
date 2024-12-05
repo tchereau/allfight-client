@@ -48,4 +48,4 @@ jobs:
       with:
         files: target/allfight.jar
       env:
-        GITHUB_TOKEN: ${{ se
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
