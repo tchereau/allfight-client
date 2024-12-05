@@ -36,6 +36,13 @@ jobs:
     - name: Compile with Maven
       run: mvn clean package
 
+    - name: Check if JAR exists
+      run: |
+        if [ ! -f target/allfight.jar ]; then
+          echo "JAR file not found! Aborting the workflow."
+          exit 1
+        fi
+
     - name: Upload the built jar as artifact
       uses: actions/upload-artifact@v4
       with:
@@ -47,5 +54,6 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: target/allfight.jar
+        tag_name: v1.0.0 # Specify a tag for the release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
