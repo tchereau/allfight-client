@@ -38,7 +38,7 @@ jobs:
 
     - name: Check if JAR exists
       run: |
-        if [ ! -f target/allfight.jar ]; then
+        if [ ! -f target/allfight-1.5.1-SNAPSHOT.jar ]; then
           echo "JAR file not found! Aborting the workflow."
           exit 1
         fi
